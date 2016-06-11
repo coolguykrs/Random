@@ -1,0 +1,2 @@
+Game difficulty: 7
+Game speed: 4
