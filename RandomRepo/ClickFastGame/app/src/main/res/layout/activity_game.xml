@@ -7,7 +7,6 @@
     tools:context=".game.GameActivity">
 
     <com.example.kristjan.clickfastgame.game.GameView
-        android:screenOrientation="portrait"
         android:id="@+id/game_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -37,7 +37,7 @@ public class GameView extends RelativeLayout {
 
     TextView timerTextView;
 
-    int seconds = 30;
+    int seconds = 10;
 
     public void setListener(GameViewListener listener) {
         this.listener = listener;
@@ -117,7 +117,7 @@ public class GameView extends RelativeLayout {
 
     private void setTimerText() {
         timerTextView.setText(seconds + "s");
-        if (listener != null && seconds == 0) {
+        if (listener != null && seconds <= 0) {
             listener.onGameEnded(score);
             timer.cancel();
         }
@@ -126,8 +126,14 @@ public class GameView extends RelativeLayout {
 
     private void giveAnswer(int i) {
 
-        if (i == correctColour) score++;
-        else vibrator.vibrate(150);
+        if (i == correctColour) {
+            score++;
+            seconds++;
+        }
+        else {
+            vibrator.vibrate(150);
+            seconds -= 5;
+        }
 
         scoreTextView.setText("Score: " + score);
 
