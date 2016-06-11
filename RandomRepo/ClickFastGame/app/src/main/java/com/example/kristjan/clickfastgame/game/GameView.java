@@ -1,8 +1,7 @@
 package com.example.kristjan.clickfastgame.game;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +21,7 @@ import java.util.TimerTask;
  */
 public class GameView extends RelativeLayout {
 
+    Vibrator vibrator;
 
     public interface GameViewListener {
         void onGameEnded(int score);
@@ -67,6 +67,8 @@ public class GameView extends RelativeLayout {
         timerTextView = (TextView) findViewById(R.id.timer_text_view);
 
         scoreTextView = (TextView) findViewById(R.id.score_text_view);
+
+        vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
         panes.add(findViewById(R.id.pane0));
         panes.add(findViewById(R.id.pane1));
@@ -125,6 +127,7 @@ public class GameView extends RelativeLayout {
     private void giveAnswer(int i) {
 
         if (i == correctColour) score++;
+        else vibrator.vibrate(150);
 
         scoreTextView.setText("Score: " + score);
 
